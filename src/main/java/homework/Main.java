@@ -8,11 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Configuration configuration = new Configuration().configure();
         try (SessionFactory sessionFactory = configuration.buildSessionFactory()) {
-            Session session = sessionFactory.openSession();
-            session.beginTransaction();
-            session.persist(new Student(1L, "","",10));
-            session.getTransaction().commit();
-            session.close();
+            insertStudents(sessionFactory);
         }
     }
 
@@ -27,15 +23,23 @@ public class Main {
                     new Student(2L, "Петров", "Петр", 19)
             );
             session.persist(
-                    new Student(1L, "Сидоров", "Андрей", 20)
+                    new Student(3L, "Сидоров", "Андрей", 20)
             );
             session.persist(
-                    new Student(1L, "Ларина", "Татьяна", 19)
+                    new Student(4L, "Ларина", "Татьяна", 19)
             );
             session.persist(
-                    new Student(1L, "Семенова", "Анна", 18)
+                    new Student(5L, "Семенова", "Анна", 18)
             );
             session.getTransaction().commit();
         }
     }
+
+    public static void show(SessionFactory factory) {
+        try (Session session = factory.openSession()) {
+            List<Student> list = session.
+        }
+    }
+
+
 }
